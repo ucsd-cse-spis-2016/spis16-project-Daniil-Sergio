@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}Hello, SPIS student!{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="static/style.css">
+  <h1>Select your choice:</h1>
+  <ul>
+    <li><a href="/survey">Take survey</a></li>
+    <li><a href="/gettop5">Top 5 matches</a></li>
+  </ul>
+{% endblock %}

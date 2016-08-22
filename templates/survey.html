@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}Please, answer the following questions.{% endblock %}
+
+{% block content %}
+
+<form action="/result">
+ Nickname:<br>
+  <input type="text" name="nickname" placeholder="Your unique nicname to acess system"><br>
+ First name:<br>
+  <input type="text" name="first_name" placeholder="Required" ><br>
+  Last name:<br>
+  <input type="text" name="last_name" placeholder="Required" ><br>
+  Home country (state if inside US):<br>
+  <input type="text" name="country" placeholder="CA"><br>
+  Your current age:<br>
+  <input type="text" name="age" placeholder="21"><br>
+  Your major:<br>
+  <input type="text" name="major" placeholder="CS"><br>
+  <br>
+  <input type="submit" placeholder="Submit">
+</form>
+
+<p>Enter your answers, then click Submit</p>
+
+{% endblock %}
