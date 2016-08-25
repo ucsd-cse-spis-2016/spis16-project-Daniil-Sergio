@@ -1,8 +1,9 @@
 "drawing the percentage match visual"
 from PIL import Image
+import time
 
 def percentvisual(percent,width,height, colors):
-    im = Image.new("RGB", (width,height), (250,250,250))
+    im = Image.new("RGBA", (width,height), (250,250,250,0))
 
     
     limit = (width) * percent
@@ -24,7 +25,7 @@ def percentvisual(percent,width,height, colors):
         count=0
         for y in range(width):
             if count <= limit:
-                im.putpixel((y, x), (int(r),int(g),int(b)))
+                im.putpixel((y, x), (int(r),int(g),int(b),0))
                 if r <= 120:
                     r = r + incrR
                 if g <=100:
@@ -32,6 +33,7 @@ def percentvisual(percent,width,height, colors):
                 if b <= 250:
                     b = b + incrB
                 count = count + 1
+                
     im.show()
 
 percentvisual(0.75,600,50, (10, 255, 100))
