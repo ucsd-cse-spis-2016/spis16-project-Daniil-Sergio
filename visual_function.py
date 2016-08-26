@@ -36,8 +36,8 @@ def percentvisual(percent,width,height, colors):
     #im.save(('tmp' + time.strftime("%H%M") + ".png"), 'PNG')
     im_with_border = ImageOps.expand(im,border=2,fill='black')
     im_with_border.show()
-    im_with_border.save('tmp.png','PNG')
+    #im_with_border.save('tmp.png','PNG')
 
-percentvisual(0.75,600,50, (10, 255, 100))
+#percentvisual(0.75,600,50, (10, 255, 100))
 
 
