@@ -1,5 +1,5 @@
 "drawing the percentage match visual"
-from PIL import Image
+from PIL import Image, ImageOps
 import time
 
 def percentvisual(percent,width,height, colors):
@@ -33,8 +33,10 @@ def percentvisual(percent,width,height, colors):
                 if b <= 250:
                     b = b + incrB
                 count = count + 1
-                
-    im.show()
+    #im.save(('tmp' + time.strftime("%H%M") + ".png"), 'PNG')
+    im_with_border = ImageOps.expand(im,border=2,fill='black')
+    im_with_border.show()
+    im_with_border.save('tmp.png','PNG')
 
 percentvisual(0.75,600,50, (10, 255, 100))
 
