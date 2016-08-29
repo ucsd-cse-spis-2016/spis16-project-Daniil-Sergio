@@ -17,8 +17,10 @@ def perMatch(data, name1,name2):
     for l in range(len(data)): 
         if name1 == data[l]['nickname']:
             dictname1 = data[l]
+            break
         elif name2 == data[l]['nickname']:
             dictname2 = data[l]
+            break
             
     total = len(dictname1.keys()) - 1
     matchcount = 0
