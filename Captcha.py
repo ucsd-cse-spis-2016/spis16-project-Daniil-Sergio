@@ -1,22 +1,74 @@
-from PIL import Image, ImageDraw, ImageFont
-# get an image
-base = Image.open('Pillow/Tests/images/lena.png').convert('RGBA')
 
-# make a blank image for the text, initialized to transparent text color
-txt = Image.new('RGBA', base.size, (255,255,255,0))
+import random
+import string
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
-# get a font
-fnt = ImageFont.truetype('Pillow/Tests/fonts/FreeMono.ttf', 40)
-# get a drawing context
-d = ImageDraw.Draw(txt)
+CHARS = string.digits + string.letters
 
-# draw text, half opacity
-d.text((10,10), "Hello", font=fnt, fill=(255,255,255,128))
-# draw text, full opacity
-d.text((10,60), "World", font=fnt, fill=(255,255,255,255))
+def create_captcha(loc='media/fonts', size=(120, 30), chars=CHARS, amount=6, img_type='GIF', mode='RGB', 
+                   bg_color=(255, 255, 255), fg_color=(0, 0, 0), font_size=24, font_type='Aspergit', 
+                   dlines=True, dpoints=True):
+    """
+    @params
+    size: the size for captcha image
+    chars: chars used for captcha character
+    amount: character amout for captcha
+    img_type: generated captcha image type
+    mode: mode for color
+    bg_color: background color for captcha image
+    fg_color: foreground color for captcha image
+    font_size: font size for captcha character
+    font_type: font type for captcha character
+    draw_lines: draw noise info
+    draw_points: draw noise info
+    """
+    chars = get_chars(chars, amount)
+    img = Image.new(mode, size, bg_color)
+    draw = ImageDraw.Draw(img)
+    if dlines:
+        draw_lines(draw, size)
+    if dpoints:
+        draw_points(draw, size)
+    draw_text(draw, loc, chars, size, font_type, font_size, fg_color)
 
-out = Image.alpha_composite(base, txt)
+    return chars, img, img_type
 
-out.show()
+def get_chars(chars, amount):
+    chars_list = random.sample(chars, amount)
+    return ''.join(chars_list)
 
-Functions
+def draw_lines(draw, size):
+    for i in xrange(random.randint(3, 10)):
+        start = random.randint(0, size[0]), random.randint(0, size[1])
+        end = random.randint(0, size[0]), random.randint(0, size[1])
+        draw.line([start, end], fill=(80, 80, 80))
+
+def draw_points(draw, size):
+    for x in xrange(size[0]):
+        for y in xrange(size[1]):
+            if x + y >= random.randint(0, size[0] + size[1]):
+                draw.point([x, y], fill=(180, 180, 180))
+
+def draw_text(draw, loc, chars, size, font_type, font_size, fg_color):
+    if font_type:
+        try:
+            font = ImageFont.truetype('%s/%s.otf' % (loc, font_type), font_size)
+            font_width, font_height = font.getsize(chars)
+        except IOError:
+            font = None
+            font_width, font_height = draw.textsize(chars)
+    else:
+        font = None
+        font_width, font_height = draw.textsize(chars)
+    draw.text([(size[0] - font_width) / 2, (size[1]-font_height) / 2], chars, font=font, fill=fg_color)
+
+TRANSFORM_DATA = (0.01, 0, 0, 0.01, 0, 0, 0.05, 0)
+def apply_transform():
+    img = img.transform(size, Image.PERSPECTIVE, transform_data)
+    img = img.filter(ImageFilter.BLUR)
+    img = img.filter(ImageFilter.EDGE_ENHANCE_MORE)
+
+
+if __name__ == '__main__':
+    chars, img, img_type = create_captcha(loc='../media/fonts')
+    img.save("captcha.gif", "GIF")
