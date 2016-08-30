@@ -38,6 +38,16 @@ def findMovie(movie,num):
             print elem, mov
             elem[mov][0] = (float(elem[mov][0])/float(elem[mov][1]))
             compDict[mov] = float(elem[mov][0]) * float(elem[mov][1])
+<<<<<<< HEAD
+=======
+    
+    finished = sorted(compDict.iteritems(), key=lambda (k,v): (v,k))
+
+    return finished
+        
+    
+        
+>>>>>>> 0d281de778f8a0f359ee55b90e77843b86a49456
     
     finished = sorted(compDict.iteritems(), key=lambda (k,v): (v,k))
 
@@ -67,4 +77,29 @@ print "Reading Metadata..."
 metadata = list(parseData("http://cses.ucsd.edu/spis/meta_Movies_and_TV.json"))
 print "done"
 
+<<<<<<< HEAD
 print findMovie('Everyday', 5)
+=======
+def getTitle():
+    final = {}
+    i = 0
+    for elem in metadata:
+        try:
+            final[elem['asin']] = elem['title']
+        except:
+            i += 1
+    return final
+
+
+print "Reading Data..."
+data = list(parseData("http://cses.ucsd.edu/spis/reviews_Movies_and_TV_5.json"))   
+print "done"
+
+
+print "Reading Metadata..."
+metadata = list(parseData("http://cses.ucsd.edu/spis/meta_Movies_and_TV.json"))
+print "done"
+
+print findMovie('Everyday', 5)
+
+>>>>>>> 0d281de778f8a0f359ee55b90e77843b86a49456
