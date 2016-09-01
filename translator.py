@@ -30,10 +30,10 @@ wordDict = {'English': "English",
             'Urdu': "اردو",
             'Vietnamese': "Tiếng Việt"}
             
-def transStr(language):
+def transStr(language, phrase):
     for l in langDict:
         if language == l:
             translator = Translator(to_lang=langDict[language])
             transword = wordDict[l]
-            translation = translator.translate("You and your partner can both speak")
+            translation = translator.translate(phrase)
             print translation + ' ' + transword
