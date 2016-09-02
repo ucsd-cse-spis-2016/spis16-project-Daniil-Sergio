@@ -26,6 +26,8 @@ __WhatWeHaveUsed__
 * Host on pythonanywhere
 * Statistics page
 * More questions in survey
+* Forgot nickname
+* More fancy stuff!
 
 __Questions__
 * Answering questions, if any.
