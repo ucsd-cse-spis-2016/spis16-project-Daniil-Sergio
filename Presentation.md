@@ -21,7 +21,7 @@ __WhatWeHaveUsed__
 * Vector regression analysis alghoritms for matching
 * Google Translate API for translation
 * Vector analysis for movie finder
-* 
+
  __TODO__
 * Host on pythonanywhere
 * Statistics page
@@ -33,4 +33,3 @@ __Questions__
 * Answering questions, if any.
  
 
-*
