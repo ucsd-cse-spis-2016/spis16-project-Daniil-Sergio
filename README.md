@@ -1,2 +1,2 @@
 # spis16-project-Daniil
-https://image.tmdb.org/t/p/w300_and_h450_bestv2/
+This is Sergio and Daniil's project for SPIS 16 as a part of data mining/web apps.
