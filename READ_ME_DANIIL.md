@@ -1,2 +1,0 @@
-**REDIS** - DB KEY_VALUE DICT AS A VALUE
-**PickleDB** 
